@@ -1,14 +1,40 @@
 function [sponSpec] = sponSpectrum_numerical_st(E0,Nc)
 
-global hbar h qe kBT Lz eps0 na m0 mr Eg me D2 c mh
-
+qe=1.60217662e-19;
 tin = 1e-14;
+Eg=1.306*qe;           % band gap energy /J
 
 % computation parameters
 
 NPTS = 5000;            % number of points of integration over Ecv
 maxE = 5*Eg;            % maximum energy to integrate to
-Erange0 = reshape(E0,1,length(E0)).*qe; 
+
+c = 2.99792458e8;            % speed of light /(m/s)
+m0 = 9.109e-31;              % electron rest mass / kg
+eps0 = 8.854e-12;            % permittivity of free space /SI 
+kB = 1.3807e-23;             % Boltzmann constant
+h = 6.62607015e-34;          % planck's constant /Js
+hbar = h/(2*pi);             % reduced planck's constant
+
+
+T = 4;                          % temperature /K
+Lz = 19e-9;                     % quantum well width /m
+kBT = kB.*T;
+
+Ep=25.18*qe;
+D2 = m0*Ep/6;           % square of the dipole interaction strength
+
+me = m0 * 0.062;   % Effective electron mass
+mh = m0 * 0.5;     % Effective hole mass
+mr = m0 * 0.055;   % reduced effective mass
+na = 3.7;               % refractive index of the gain material
+
+
+Erange0 = reshape(E0,1, length(E0)) .* qe;
+%Erange0 = [1 3 5; 2 4 6; 7 8 10];
+%Erange0 = E0;
+%Erange0 = Erange0.*qe;
+%Erange0 = E0*qe;
 Ecvrange = linspace(Eg,maxE,NPTS+1).';
 
 [Fc, Fv] = getQuasiFermiLevels(Nc,Lz);  

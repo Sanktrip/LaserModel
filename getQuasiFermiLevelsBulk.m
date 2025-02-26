@@ -1,15 +1,14 @@
-function [Fc, Fv] = getQuasiFermiLevelsBulk(Nc);
+function [Fc, Fv] = getQuasiFermiLevelsBulk(Nc)
 
 
-global Eg me mh qe
+global Eg qe
 
-
-Nfunc = @(Fc) (get2Delectrondensity(Fc,Lz)-Nc);
+Nfunc = @(Fc) (get3Delectrondensity(Fc)-Nc);
 
 OPTS = optimset('TolX',qe*1e-6);
 Fc = fzero(Nfunc,Eg,OPTS);
 
-Nfunc2 = @(Fv) (get2Dholedensity(Fv,Lz)-Nc);
+Nfunc2 = @(Fv) (get3Dholedensity(Fv)-Nc);
 
 OPTS = optimset('TolX',qe*1e-8);
 Fv = fzero(Nfunc2,-1e-20,OPTS);

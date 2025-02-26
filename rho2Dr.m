@@ -11,7 +11,7 @@ En = 2*(nb.*pi./Lz).^2.*hbar^2./(2*m);  % note that the bands are spaced twice a
 
 Enqe = En./qe;
 
-p0 = m/(pi*hbar^2*Lz)
+p0 = m/(pi*hbar^2*Lz);
 
 psum = 0;
 for n = nb

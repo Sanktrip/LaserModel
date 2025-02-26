@@ -22,7 +22,7 @@ end
 Ne = nsum.*(me.*kB.*T)./(pi*hbar^2*Lz);
 
 % hold on
-% plot(F,Nd,'ko')
+%plot(F,Nd,'ko')
 % pause
 
 end

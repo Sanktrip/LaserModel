@@ -71,7 +71,7 @@ Ecvrange = linspace(Eg,maxE,NPTS+1).';
 % preliminaries:
 
 kBT = kB.*T;
-pr = mr/(pi*hbar^2*Lz)                 % compute electronic joint DOS (not used)
+pr = mr/(pi*hbar^2*Lz);                 % compute electronic joint DOS (not used)
 
 % optical cavity resonances
 
