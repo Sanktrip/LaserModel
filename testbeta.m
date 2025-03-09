@@ -7,10 +7,10 @@ E0 = linspace(0.4,2.0,1000);
 Nc = 1.0e20;
 [gain,beta,Rspon] = gain_numerical_cgp(E0,Nc);
 
-[gain2,E2,beta2] = gain_numerical_parya(Nc);
+%[gain2,E2,beta2] = gain_numerical_parya(Nc);
 
-disp(beta)
-disp(beta2)
+%disp(beta)
+%disp(beta2)
 
 % 
 % close all
@@ -36,14 +36,15 @@ for Nc = Ncrange
 end
 
 close all
-plot(E0.*qe,gain_vals)
+%plot(E0.*qe,gain_vals)
 %hold on
 %plot(E2,gain_vals2,'k')
-figure
+%figure
 %semilogx(Ncrange,beta2_vals)
 %hold on
-plot(Ncrange,beta_vals)
-
+%plot(Ncrange,beta_vals)
+plot(E0.*qe,rspon_vals);
+figure;
 hold on
-plot(E0.*qe,rspon_vals)
+
 

@@ -35,11 +35,13 @@ maxE = 5*Eg;            % maximum energy to integrate to
 % Parameters 
 %E0 = linspace(-0.05, 0.25,100);   % In eV
 E0 = linspace(0.4,2.0,1000);
-NcRange = logspace(20,25,20);
-%NcRange = [4.7e18, 3.6e18, 2.6e18, 1.7e18] .* 1e6; % Carrier densities
+%NcRange = logspace(20,25,20);
+%NcRange = 1.0e20;
+NcRange = [4.7e18, 3.6e18, 2.6e18, 1.7e18] .* 1e6; % Carrier densities
+%NcRange = 1e24;
 
 % Test Bulk
-
+%{
 ib = 0;
 for Nc = NcRange
     ib = ib+1;
@@ -54,9 +56,10 @@ plot(E0, gain_vals./1e2);
 hold on
 %plot(E0.*qe, sponSpec_vals);
 % figure 
+%}
 
 % Test 2D
-%{
+
 ib = 0;
 for Nc = NcRange
     ib = ib+1;
@@ -67,13 +70,16 @@ for Nc = NcRange
 end
 
 close all
-%plot(E0.*qe, gain2D_vals);
+plot(E0, gain2D_vals/1e6);
+figure
+hold on
+%plot(E0.*qe, sponSpec2D_vals);
 %hold on
 lambda = (h.*c)./(E0.*qe) * 1e9;
 plot(lambda, sponSpec2D_vals);
 hold on
 %figure 
-%}
+
 
 
 

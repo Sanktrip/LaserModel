@@ -10,7 +10,7 @@ global qe hbar cspeed eps0 kB   % fundamental constants
 global T na nc Eg me mh mr      % material constants
 global NBANDS
 
-DEBUG = 1;
+DEBUG = 0;
 
 % fundamental constants. Everything is in SI units.
 
@@ -150,7 +150,7 @@ if DEBUG
 end
 
 Rspon_total = trapz(E,rs_total_E);
-Rspon_j = trapz(E,rs_j_E)
+Rspon_j = trapz(E,rs_j_E);
 
 beta = Rspon_j/Rspon_total;
 
