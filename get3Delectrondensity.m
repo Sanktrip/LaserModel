@@ -4,7 +4,7 @@ function Ne = get3Delectrondensity(Fc)
 % band.
 
 global hbar me Eg kBT mr
-integrand = @(E) 1./(1+ exp(Eg+mr/me*(E-Eg) - Fc)./(kBT)) .* sqrt(E - Eg);
+integrand = @(E) 1./(1+exp( (Eg+mr/me*(E-Eg) - Fc)./kBT)) .* sqrt(E - Eg);
 
 nsum = integral(@(E) integrand(E), Eg, inf);
 

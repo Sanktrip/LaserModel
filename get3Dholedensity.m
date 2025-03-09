@@ -5,7 +5,7 @@ function Ne = get3Dholedensity(Fv)
 
 global hbar mh Eg kBT mr
 
-integrand = @(E) 1./(1+exp((-mr/mh*(E-Eg)-Fv)./kBT)) .* sqrt(E - Eg);
+integrand = @(E) 1./(1+exp( (-mr/mh*(E-Eg)-Fv)./kBT)) .* sqrt(E - Eg);
 
 nsum = integral(@(E) integrand(E), Eg, inf);
 

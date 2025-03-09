@@ -1,4 +1,4 @@
-function [gain,beta,Rspon_total, em] = gain_numerical_cgp(E0,Nc)
+function [gain,beta,Rspon_total] = gain_numerical_cgp(E0,Nc)
 % computes the gain and beta factor for a given range of E0
 % Nc is the carrier density in SI units.
 % E0 should be given in eV (not SI, but this is ok for the moment)
@@ -9,9 +9,8 @@ function [gain,beta,Rspon_total, em] = gain_numerical_cgp(E0,Nc)
 global qe hbar cspeed eps0 kB   % fundamental constants
 global T na nc Eg me mh mr      % material constants
 global NBANDS
-global Lz kBT m0 Gamma_in D2 c Ecvrange Erange0 h
 
-DEBUG = 0;
+DEBUG = 1;
 
 % fundamental constants. Everything is in SI units.
 
@@ -34,7 +33,6 @@ Ev = 0;                 % top of valence band
 Ec = Eg;                % botton of conduction band
 
 tin = 40e-15;           % broadening lifetime /s
-%tin = 1e-14;
 Gamma_in = 2*hbar/tin;  % Lorentzian linewidth /J
 
 Ep=25.18*qe;
@@ -71,7 +69,7 @@ Ecvrange = linspace(Eg,maxE,NPTS+1).';
 % preliminaries:
 
 kBT = kB.*T;
-pr = mr/(pi*hbar^2*Lz);                 % compute electronic joint DOS (not used)
+pr = mr/(pi*hbar^2*Lz)                 % compute electronic joint DOS (not used)
 
 % optical cavity resonances
 
@@ -135,7 +133,7 @@ end
 integrand_over_Ecv2 = @(Ecv) p2D(Ecv).*fc(Ecv).*(1-fv(Ecv)).*D2.*L(E,Ecv,Gamma_in);
 
 rs_total_E = Nph.*C0(E).*(c/nc).*trapz(Ecvrange,integrand_over_Ecv2(Ecvrange),1);
-em = rs_total_E;
+
 if DEBUG
     figure
     plot(E,rs_total_E)
@@ -152,7 +150,7 @@ if DEBUG
 end
 
 Rspon_total = trapz(E,rs_total_E);
-Rspon_j = trapz(E,rs_j_E);
+Rspon_j = trapz(E,rs_j_E)
 
 beta = Rspon_j/Rspon_total;
 

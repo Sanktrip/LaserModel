@@ -33,10 +33,10 @@ maxE = 5*Eg;            % maximum energy to integrate to
 
 
 % Parameters 
-E0 = linspace(-0.05, 0.25,100);   % In eV
-%E0 = linspace(0.4,2.0,1000);
-%NcRange = logspace(20,25,20);
-NcRange = [4.7e18, 3.6e18, 2.6e18, 1.7e18] .* 1e6; % Carrier densities
+%E0 = linspace(-0.05, 0.25,100);   % In eV
+E0 = linspace(0.4,2.0,1000);
+NcRange = logspace(20,25,20);
+%NcRange = [4.7e18, 3.6e18, 2.6e18, 1.7e18] .* 1e6; % Carrier densities
 
 % Test Bulk
 
